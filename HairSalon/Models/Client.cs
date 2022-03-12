@@ -1,19 +1,10 @@
-using System;
-using System.Collections.Generic;
-
 namespace HairSalon.Models
 {
-  public class Stylist
+  public class Client
   {
-    public Stylist()
-    {
-      this.Clients = new HashSet<Client>();
-    }
-
-    public int StylistId { get; set; }
+    public int ClientId { get; set; }
     public string Name { get; set; }
-    public string Specialty { get; set; }
-
-    public virtual ICollection<Client> Clients { get; set; }
+    public int StylistId { get; set; }
+    public virtual Stylist Stylist { get; set; }
   }
 }

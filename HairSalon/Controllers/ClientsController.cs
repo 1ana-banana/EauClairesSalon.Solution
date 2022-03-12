@@ -7,17 +7,24 @@ using HairSalon.Models;
 
 namespace HairSalon.Controllers
 {
-  public class ClientsController : Controller
+  public class  ClientsController : Controller
   {
     private readonly HairSalonContext _db;
+
     public ClientsController(HairSalonContext db)
     {
       _db = db;
     }
 
+    public ActionResult Index()
+    {
+      List<Client> model = _db.Clients.Include(client => client.Stylist).ToList();
+      return View(model);
+    }
+
     public ActionResult Create()
     {
-      Viewbag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
+      ViewBag.StylistId = new SelectList(_db.Stylists, "StylistId", "Name");
       return View();
     }
     [HttpPost]
